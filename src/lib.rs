@@ -15,6 +15,18 @@ impl Simulation {
     pub fn world(&self) -> &World {
         &self.world
     }
+
+    pub fn step(&mut self) {
+        /*for animal in &mut self.world.animals {
+            let vector = na::Vector2::new(animal.speed, 0.0);
+            animal.pos += animal.rotation * vector;
+        }*/
+        self.world.animals.iter_mut()
+            .map(|a| {
+                let vector = na::Vector2::new(a.speed, 0.0);
+                a.pos += a.rotation * vector;
+            });
+    }
 }
 
 #[derive(Debug)]
@@ -48,6 +60,7 @@ impl World {
 pub struct Animal {
     pos: na::Point2<f32>,
     rotation: na::Rotation2<f32>,
+    speed: f32,
 }
 
 impl Animal {
@@ -55,6 +68,7 @@ impl Animal {
         Self {
             pos: rng.gen(),
             rotation: rng.gen(),
+            speed: rng.gen(),
         }
     }
 
