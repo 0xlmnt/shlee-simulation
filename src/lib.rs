@@ -47,14 +47,14 @@ impl World {
 #[derive(Debug)]
 pub struct Animal {
     pos: na::Point2<f32>,
-    velocity: na::Vector2<f32>,
+    rotation: na::Rotation2<f32>,
 }
 
 impl Animal {
     pub fn random(rng: &mut dyn RngCore) -> Self {
         Self {
             pos: rng.gen(),
-            velocity: rng.gen(),
+            rotation: rng.gen(),
         }
     }
 
@@ -62,8 +62,8 @@ impl Animal {
         self.pos
     }
 
-    pub fn velocity(&self) -> na::Vector2<f32> {
-        self.velocity
+    pub fn rotation(&self) -> na::Rotation2<f32> {
+        self.rotation
     }
 }
 
